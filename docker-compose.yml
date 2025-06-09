@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mariadb-central:
-    image: mariadb:11.3
+    image: mariadb:10.6
     container_name: mariadb-central
     restart: always
     environment:
