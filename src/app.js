@@ -53,7 +53,7 @@ const options = {
     servers: [
       {
         url: `http://localhost:3000/api`,
-        description: 'Servidor en Azure'
+        description: 'Servidor local'
       },
     ],    
   },
