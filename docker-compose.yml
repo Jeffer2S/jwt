@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mariadb-central:
+    image: mariadb:11.3
+    container_name: mariadb-central
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    ports:
+      - "${MARIADB_PORT}:3306"
+    volumes:
+      - mariadb_central_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - central-net
+    command:
+      --bind-address=0.0.0.0   # Permite conexiones desde cualquier dirección IP
+
+volumes:
+  mariadb_central_data:
+
+networks:
+  central-net:
+    driver: bridge
